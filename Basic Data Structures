@@ -1,1 +1,190 @@
+LINKED LISTS:
+-------------------------
+1. Searching in a Linked List
+Give a unsorted list and a number n.
+Return the number of occurrence of n.
+
+Test case Example:
+-----------------------
+Input:
+A.  1->4->3->2->4
+    n = 4
+B.  1->9->4
+    n = 3
+ 
+Output:
+A.  2
+B.  0
+
+PROGRAM:
+----------------------
+
+2. Inserting a node
+Given the pointer to the head node of a linked list, an integer to add to the list and the position at which the integer must be inserted.
+Create a new node with the given integer, insert this node at the desired position and return the head node.
+A position of 0 indicates head, a position of 1 indicates one node away from the head and so on.
+
+Note: The head pointer given may be null meaning that the initial list is empty.
+Test case Example :
+---------------------
+Input :
+A. 1->2->3
+position = 2
+data = 4
+
+Output :
+A. 1->2->4->3
+
+PROGRAM:
+------------------------
+
+3. Remove from end
+Given a linked list, remove the nth node from the end of list and return its head.
+Note: If n is greater than the size of the list, remove the first node of the list.
+Test case Example :
+--------------------
+Input :
+1->2->3->4->5
+n = 2
+Output :
+1->2->3->5
+
+PROGRAM:
+---------------------
+
+4.Inserting a node in a Doubly Linked List
+Given a reference to the head of a doubly-linked list and an integer D.
+Create a new Node having value D and insert it into a sorted linked list while maintaining the sort.
+
+Test case Example :
+------------------------
+Input :
+1->2->3->5
+D = 4
+
+Output :
+1->2->3->4->5
+
+PROGRAM:
+---------------------------
+
+5. Detecting Cycle in a Linked List
+A linked list is said to contain a cycle if any node is visited more than once while traversing the list.
+Given a list check whether or not there is a cycle in the list.
+Return 1 is list has cycle, else return 0.
+Note: If the list is empty, head will be null.
+
+Test case Example :
+------------------------
+Input :
+   A.         .......
+              |     |
+              V     |
+     (head)1->2->4->5
+   B.(head)1->2->NULL
+
+Output :
+A. 1
+B. 0
+
+PROGRAM:
+-----------------------
+
+6. Merge two sorted Linked Lists
+You’re given the pointer to the head nodes of two sorted linked lists.
+The data in both lists will be sorted in ascending order. Change the next pointers to obtain a single, merged linked list which also has data in ascending order.
+Return the head of this merged list.
+
+Test case Example :
+-----------------------
+Input :
+(head1) 1->2->3->5->null
+(head2) 3->4->6->null
+
+Output :
+(head) 1->2->3->3->4->5->6->null
+
+PROGRAM:
+--------------------
+
+7. Intersection point of 2 Linked Lists
+Given two singly linked lists in a system.
+By some programming error, the end node of one of the linked list got linked to the second list, forming an inverted Y shaped list.
+Find the point where two linked list merge.
+
+Note: If no intersection return -1
+Test case Example :
+Input :
+(head1) 3->6->9->15->30
+(head2) 10->15->30
+Output :
+15
+
+PROGRAM:
+------------------------------
+
+8. Remove duplicates
+Given an unsorted linked list remove all the duplicates.
+Note: list can be empty.
+
+Test case Example :
+Input:
+1->5->4->5->1->1
+
+Output:
+1->5->4
+
+PROGRAM:
+------------------
+
+9. Compare two linked lists
+Given the pointer to the head nodes of two linked lists.
+Compare the data in the nodes of the linked lists to check if they are equal.
+The lists are equal only if they have the same number of nodes and corresponding nodes contain the same data.
+Note: Head pointer given may be null meaning that the corresponding list is empty.
+
+Test case Example :
+Input :
+A. 1->2->3
+1->2->3
+B. 1->2->3
+  1->2
+
+Output :
+A. true
+B. false
+
+PROGRAM:
+---------------------------------
+
+10. Find pairs with given sum
+Given a sorted doubly linked list of positive distinct elements.
+Find pairs in doubly linked list whose sum is equal to given value x, without using any extra space.
+Note: Expected time complexity is O(n) and auxiliary space is O(1).
+
+Test case Example :
+Input :
+(head)1 <-> 2 <-> 4 <-> 5 <-> 6 <-> 8 <-> 9
+x = 7
+Output :
+6 1
+5 2
+
+PROGRAM:
+------------------------
+
+11. Reverse a Doubly Linked List
+Given the pointer to the head node of a doubly linked list. Reverse the order of the nodes in the list.
+Change the next and prev pointers of all the nodes so that the direction of the list is reversed.
+Return a reference to the head node of the reversed list.
+Note: The head node might be NULL to indicate that the list is empty.
+
+Test case Example :
+Input :
+1<->2<->3<->5->NULL
+Output :
+5<->3<->2<->1->NULL
+
+PROGRAM:
+--------------------
 
