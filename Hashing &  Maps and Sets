@@ -1,1 +1,98 @@
+HASHING:
+--------------------------
+1. Detecting Cycle in a Linked List, using hashing
+A linked list is said to contain a cycle if any node is visited more than once while traversing the list.
 
+Given a list check whether or not there is a cycle in the list.
+Return 1 is list has cycle, else return 0.
+
+Note: If the list is empty, head will be null.
+Test case Example :
+--------------------
+Input :
+   A.         .......
+              |     |
+              V     |
+     (head)1->2->4->5
+ 
+   B.(head)1->2->NULL
+Output :
+A. 1
+B. 0
+
+PROGRAM:
+----------------------
+
+2. Count frequency of a character in a String
+Give a string S.
+Count the frequencies of each different characters in S.
+Output must be in lexicographical order.
+Note1: All characters of S are in lower case.
+Note2: See examples for clarification of output format.
+
+Test case Example :
+---------------------------
+Input :
+A. edyst
+B. abababa
+Output :
+A. d1 e1 s1 t1 y1
+B. a4 b3
+
+PROGRAM:
+--------------------
+
+3. Count pairs with given sum
+Given an array of integers and a number S.
+Count how many pairs in the array having sum equal to S.
+
+Note: the numbers can be negative also.
+
+Test case Example :
+-----------------------
+Input :
+Array = 1 2 3 4 5 6 7 8 7 7
+N = 8
+Output :
+5
+
+PROGRAM:
+---------------------------------
+
+MAPS:
+-------------------------
+1. Stores with same items & different prices
+Given two list A and B of different length.
+Each item of a list is associated with its name and its price.
+
+Count the number of items which are in both the lists but with different prices.
+
+Test case Example :
+---------------------------
+Input :
+Aname: [ "code", "fode", "mode" ]
+Aprice: [3, 2, 1]
+ 
+Bname: [ "code", "fode", "mode", "load" ]
+Bprice: [4, 2, 2, 2]
+Output :
+2
+
+PROGRAM:
+---------------------
+
+SETS:
+-----------------------
+1. Distinct Numbers in Window
+You are given an array of N integers, A1, A2 ,…, AN and an integer K. Return the of count of distinct numbers in all windows of size K.
+
+Formally, return an array of size N-K+1 where i’th element in this array contains number of distinct elements in sequence Ai, Ai+1 ,…, Ai+k-1.
+Note: If K > N, return empty array.
+
+Test case Example:
+--------------------------
+Input :
+A = [1, 2, 1, 3, 4, 3]
+K = 3
+Output :
+[2, 3, 3, 2]
