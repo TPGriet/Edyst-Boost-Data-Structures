@@ -1,1 +1,186 @@
+STACKS:
+-----------------
+1. Balanced Parantheses in Expression
+A bracket is considered to be any one of the following characters: (, ), {, }, [, or ].
+
+Two brackets are considered to be a matched pair if the an opening bracket (i.e., (, [, or {) occurs to the left of a closing bracket (i.e., ), ], or }) of the exact same type.
+There are three types of matched pairs of brackets: [], {}, and ().
+A matching pair of brackets is not balanced if the set of brackets it encloses are not matched. 
+For example, {[(])} is not balanced because the contents in between { and } are not balanced. 
+The pair of square brackets encloses a single, unbalanced opening bracket, (, and the pair of parentheses encloses a single, unbalanced closing square bracket, ].
+
+By this logic, we say a sequence of brackets is balanced if the following conditions are met:
+It contains no unmatched brackets.
+The subset of brackets enclosed within the confines of a matched pair of brackets is also a matched pair of brackets.
+Given a string s, determine whether s is balanced.
+If a string is balanced, return 1. Otherwise, return 0.
+
+Test case Example :
+Input :
+A : {[()]}
+B : {[(])}
+Output :
+A : 1
+B : 0
+
+PROGRAM:
+-----------------------------
+
+2. Evaluate Postfix expression
+Evaluate the value of an arithmetic expression in Reverse Polish Notation.
+Valid operators are+, -, *, /.Each operand may be an integer or another expression.
+
+Test case Example :
+Input :
+A. ["2", "1", "+", "3", "*"] 
+B. ["4", "13", "5", "/", "+"]
+
+Output :
+A. ((2 + 1) * 3) = 9 
+B. (4 + (13 / 5)) = 6
+
+PROGRAM:
+------------------------
+
+3. Next Larger Element (A)
+Given an array, find the Next greater element for every element.
+The Next greater Element for an element x is the first greater element on the right side of x in array.
+Elements for which no greater element exist, consider next greater element as -1.
+
+Test case Example :
+----------------------------
+Input :
+A : [4, 5, 2, 25]
+Output :
+   [5, 25, 25, -1]
+
+PROGRAM:
+------------------------------
+
+4. Postfix to Infix
+Given a postfix expression convert it to infix.
+Instead of numeric variables the expression given is using lowercase english letters (a to z).
+
+Test case Example :
+-----------------------------
+Input :
+A. abc*+ 
+B. rst++
+Output :
+A. (a+b*c) 
+B. (r+(s+t)) 
+
+5. Min Stack
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
+    push(x) – Push element x onto stack ( 0 <= x<= 9 ).
+    pop() – Removes the element on top of the stack.
+    top() – Get the top element.
+    getMin() – Retrieve the minimum element in the stack.
+Note that all the operations have to be constant time operations.
+Questions to ask the interviewer :
+-----------------------------
+    Q: What should getMin() do on empty stack? 
+    A: In this case, return -1.
+ 
+    Q: What should pop do on empty stack? 
+    A: In this case, nothing. 
+ 
+    Q: What should top() do on empty stack?
+    A: In this case, return -1
+NOTE: If you are using your own declared global variables, make sure to clear them out in the constructor.
+
+Test case Example :
+------------------
+    * <number> : Corresponds to push(<number>) in stack
+    * p : Corresponds to pop()
+    * t : Corresponds to top()
+    * g : Corresponds to getMin() call.
+Input :
+A. 0 9 1 g t p p p t
+Output :
+A. 0 1 -1 
+
+PROGRAM:
+--------------------------------
+
+
+
+QUEUES:
+---------------------------------
+1. Inserting and Deleting Elements From a Queue
+Given a string containing digits from 0 to 9 and character R, if i-th element of the string is R, remove first digit from left of the current string(before the i-th position).
+If no digit exist, return “-1”.
+
+Test case Example :
+----------------------
+Input :
+A. 12RRR34R
+Output :
+A. 1 2 -1 3
+
+PROGRAM:
+-----------------------
+
+2. Reversing the order of a Queue
+Given a queue Q reverse it.
+Only following standard operations are allowed on queue.
+enqueue(x) : Add an item x to rear of queue.
+dequeue() : Remove an item from front of queue.
+empty() : Checks if a queue is empty or not.
+
+Test case Example :
+------------------------
+Input :
+Q = [1, 2, 3, 4, 5]
+Output :
+Q = [5, 4, 3, 2, 1]
+
+PROGRAM:
+---------------------------
+
+3. Interleaving elements of a Queue
+Given a queue Q of integers of even length, rearrange the elements by interleaving the first half of the queue with the second half of the queue.
+
+Test case Example :
+--------------------------
+Input :
+Q = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+Output :
+Q = [11, 16, 12, 17, 13, 18, 14, 19, 15, 20]
+
+PROGRAM:
+--------------------------
+
+4. Queue using 2 stacks
+A queue is an abstract data type that maintains the order in which elements were added to it, allowing the oldest elements to be removed from the front and new elements to be added to the rear.
+This is called a First-In-First-Out (FIFO) data structure because the first element added to the queue (i.e., the one that has been waiting the longest) is always the first one to be removed.
+
+A basic queue has the following operations:
+
+* Enqueue: add a new element to the end of the queue.
+* Dequeue: remove the element from the front of the queue and return it.
+In this question you must first implement a queue using two stacks. Then process queries, where each query is one of the following 3 types:
+
+1. `1 x`: Enqueue element x into the end of the queue.
+2. `2`: Dequeue the element at the front of the queue.
+3. `3`: Print the element at the front of the queue.
+
+Test case Example :
+--------------------------
+Input :
+10
+1 42
+2
+1 14
+3
+1 28
+3
+1 60
+1 78
+2
+2
+Output :
+14
+14
 
