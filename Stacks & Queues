@@ -25,6 +25,46 @@ B : 0
 
 PROGRAM:
 -----------------------------
+class Stack:
+    def __init__(self):
+        self.size = 10
+        self.data = []
+        self.top = -1
+
+    def push(self, element):
+        self.data.append(element)
+        self.top += 1
+
+    def pop(self):
+        popped_element = None
+        if self.top > -1:
+            popped_element = self.data.pop()
+            self.top -= 1
+        return popped_element
+
+    def is_empty(self):
+        return self.top == -1
+
+    def is_full(self):
+        return self.top == self.size - 1
+class Solution:
+    def __init__(self):
+        self.st = Stack()
+    def isBalanced(self, exp):
+        # write your method
+        for i in range(len(exp)):
+            if exp[i] == '(' or exp[i] == '{' or exp[i] == '[':
+                self.st.push(exp[i])
+            elif exp[i] == ')' or exp[i] == '}' or exp[i] == ']':
+                if self.st.is_empty() or not self.are_pair(self.st.pop(), exp[i]):
+                    return 0
+        return 1
+
+    @staticmethod
+    def are_pair(t, e):
+        return (t == '(' and e == ')') or (t == '{' and e == '}') or (t == '[' and e == ']')
+
+
 
 2. Evaluate Postfix expression
 Evaluate the value of an arithmetic expression in Reverse Polish Notation.
@@ -41,6 +81,19 @@ B. (4 + (13 / 5)) = 6
 
 PROGRAM:
 ------------------------
+class Solution:
+    def evaluateRPN(self, A):
+        stack = []
+        for t in A:
+            if t not in {"+", "-", "*", "/"}:
+                stack.append(int(t))
+            else:
+                b, a = stack.pop(), stack.pop()
+                if t == "+": stack.append(a + b)
+                elif t == "-": stack.append(a - b)
+                elif t == "*": stack.append(a * b)
+                else: stack.append(a // b)
+        return stack[0]
 
 3. Next Larger Element (A)
 Given an array, find the Next greater element for every element.
@@ -56,61 +109,267 @@ Output :
 
 PROGRAM:
 ------------------------------
+class Solution:
+    
+    def nextGreaterElement(self, arr):
+        result = [-1] * len(arr)  # Initialize result array with -1
+        stack = []
 
-4. Postfix to Infix
-Given a postfix expression convert it to infix.
-Instead of numeric variables the expression given is using lowercase english letters (a to z).
+        for i in range(len(arr)):
+            while stack and arr[i] > arr[stack[-1]]:
+                index = stack.pop()
+                result[index] = arr[i]
 
-Test case Example :
+            stack.append(i)
+
+        return result
+
+
+4. Infix  to Postfix 
+While us humans can understand how to calculate a simple mathematical expression like 2 + 3 * 7 - 9 / 5, computers use a special technique to make it easier for them. They convert an infix expression to a postfix expression.
+
+An infix expression is one in which all the operators (+,-,*,/) appear between operands, just like our usual expressions.
+
+A postifx expression is one in which all the operands appear first, and the operators appear after the operands.
+
+Write a class Fixes that has 2 strings infix and postfix. It should have a parameterized constructor to accept the value of infix.
+
+Also, it should have a method called convert that converts the infix to a postfix expression and stores it in the postfix.
+
+Write only the Fixes class. Main class has already been written.
+
+Hint: Check google for tutorials on infix to postfix conversion first. Then write the code for it.
+Note: all operands will be of single digit only
+
+TEST CASES:
+-----------------------
+Example Input:
+2+3*7-9/5
+Output:
+237*+95/-
+Example Input:
+(2+3)*7-9/2^1
+Output:
+23+7*921^/-
+
+PROGRAM:
 -----------------------------
-Input :
-A. abc*+ 
-B. rst++
-Output :
-A. (a+b*c) 
-B. (r+(s+t)) 
+Operators = set(['+', '-', '*', '/', '(', ')', '^'])  # collection of Operators
+Priority = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
 
-5. Min Stack
-Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+class Fixes:
+    def __init__(self, exp):
+        self.expression = exp.strip()
+        self.stack = []
+        self.postfix = ''
 
-    push(x) – Push element x onto stack ( 0 <= x<= 9 ).
-    pop() – Removes the element on top of the stack.
-    top() – Get the top element.
-    getMin() – Retrieve the minimum element in the stack.
-Note that all the operations have to be constant time operations.
-Questions to ask the interviewer :
------------------------------
-    Q: What should getMin() do on empty stack? 
-    A: In this case, return -1.
- 
-    Q: What should pop do on empty stack? 
-    A: In this case, nothing. 
- 
-    Q: What should top() do on empty stack?
-    A: In this case, return -1
-NOTE: If you are using your own declared global variables, make sure to clear them out in the constructor.
+    def convert(self):
+        for character in self.expression:
+            if character not in Operators:
+                self.postfix += character
+            elif character == '(':
+                self.stack.append('(')
+            elif character == ')':
+                while self.stack and self.stack[-1] != '(':
+                    self.postfix += self.stack.pop()
+                self.stack.pop()
+            else:
+                while self.stack and self.stack[-1] != '(' and Priority[character] <= Priority[self.stack[-1]]:
+                    self.postfix += self.stack.pop()
+                self.stack.append(character)
+
+        while self.stack:
+            self.postfix += self.stack.pop()
+
+
+## write Fixes class above this line ##
+
+testcases = int(input())
+for _ in range(testcases):
+    equation = input()
+    fix = Fixes(equation)
+    print(f'Infix: {equation}')
+    fix.convert()
+    print(f'Postfix: {fix.postfix}')
+    print('---')
+
+5.mplement Stack and its operations
+Write a program to implement the following operations in a Stack:
+
+Operations:
+
+push:       To add the elements into Stack
+pop:         To remove the element from Stack and return the element.
+peek:        To get the top element from the Stack and return the element.
+isEmpty:   returns 1 is stack is empty. Else returns 0
+isFull:       returns 1 is stack is full. Else returns 0
+Some code has already been written. Please use the given structure / class to write your own functions
 
 Test case Example :
 ------------------
-    * <number> : Corresponds to push(<number>) in stack
-    * p : Corresponds to pop()
-    * t : Corresponds to top()
-    * g : Corresponds to getMin() call.
-Input :
-A. 0 9 1 g t p p p t
-Output :
-A. 0 1 -1 
-
+   
 PROGRAM:
 --------------------------------
+class Stack:
+    def __init__(self,size):
+        self.size=size
+        self.data = []
+        self.top = -1
+    def push(self, element):
+        self.data.append(element)
+        self.top = self.top + 1
+    def pop(self):
+        popped_element = None
+        if(self.top>-1):
+            popped_element = self.data.pop() 
+            self.top = self.top - 1
+        return popped_element
+    def isEmpty(self):
+        if self.top==-1:
+            return 1
+        else:
+            return 0
+    def isFull(self):
+        if self.top==size-1:
+            return 1
+        else:
+            return 0
+    def peek(self):
+        if(self.isEmpty()):
+            print("No elements in Stack")
+        else:
+            return(self.data[self.top])
 
+
+if __name__ == "__main__": 
+    
+    test_cases=int(input()) # number of test cases
+    size=int(input()) # size of Stack
+    stack=Stack(size) # creating new stack object
+    
+    while(test_cases>0): 
+        instruction=input().split()
+        val=0
+        if len(instruction)>1:
+            val=int(instruction[1])
+
+        instruction=int(instruction[0])
+        #####
+        # Instruction 1 means Push
+        # Instruction 2 means Pop
+        # Instruction 3 means Peek
+        # Instruction 4 means isEmpty
+        # Instruction 5 means isFull
+        #####
+
+        if(instruction==1):  
+            print(f'push:{val}')
+            stack.push(val)
+
+        elif (instruction==2):
+            print(f'pop:{stack.pop()}')
+
+        elif (instruction==3):            
+            print(f'peek:{stack.peek()}')
+
+        elif(instruction==4):
+            print(f'isEmpty:{stack.isEmpty()}')
+
+        elif(instruction==5):
+            print(f'isFull:{stack.isFull()}')
+
+        test_cases=test_cases-1 
+
+
+6. Opening and closing gates problem
+A water reservation system constructed in a city has several opening and closing gates. 
+If any opening gates are not closed with a corresponding closing gate then the water will leak out of the system and there will be a threat to the life of people living in the city.
+Also, the closing gate cannot exist without the opening gate, so the system head checks the design of the system and he has to ensure that the people are safe in the city. Write an algorithm to find whether people are safe or not.
+
+TEST CASES:
+----------------------
+Input Format:
+Take the Input as String from Stdin.
+Output Format:
+Print the number of gates if they are safe otherwise print -1.
+
+Example Input:
+(())(
+Output:
+-1
+
+Example Input:
+()()()
+Example Output:
+3
+
+PROGRAM:
+---------------------
+class Stack:
+    def __init__(self):
+        self.size = 10
+        self.data = []
+        self.top = -1
+
+    def push(self, element):
+        self.data.append(element)
+        self.top += 1
+
+    def pop(self):
+        popped_element = None
+        if self.top > -1:
+            popped_element = self.data.pop()
+            self.top -= 1
+        return popped_element
+
+    def is_empty(self):
+        return self.top == -1
+
+    def is_full(self):
+        return self.top == self.size - 1
+
+class Solution:
+    
+    def __init__(self):
+        self.st = Stack()
+        self.count=0
+    def isBalanced(self, exp):
+        # write your method
+        for i in range(len(exp)):
+            if exp[i] == '(' :
+                self.st.push(exp[i])
+            elif exp[i] == ')' :
+                if self.st.is_empty() or not self.are_pair(self.st.pop(), exp[i]):
+                    return -1
+                else:
+                    self.count=self.count+1
+                
+        if(self.st.is_empty()):
+            return self.count
+        else:
+            return -1
+    @staticmethod
+    def are_pair(t, e):
+        return (t == '(' and e == ')') 
+
+str=input()
+s=Solution()
+print(s.isBalanced(str))
 
 
 QUEUES:
 ---------------------------------
-1. Inserting and Deleting Elements From a Queue
-Given a string containing digits from 0 to 9 and character R, if i-th element of the string is R, remove first digit from left of the current string(before the i-th position).
-If no digit exist, return “-1”.
+1. Implement a Queue and its operations
+Write a program to create a Queue and it's operations which is given below. 
+Name you class as Queue. In Queue class use Integer array to implement Queue. Check the code for more details.
+
+Operations:
+---------------------------
+enque accepts an integer and adds to the Queue
+deque remove the element from Queue and prints the value which is removed.
+peek it returns the latest element from the queue
+isEmpty returns true if Queue is empty, and false otherwise
+isFull returns true if Queue is Full, and false otherwise
 
 Test case Example :
 ----------------------
@@ -121,6 +380,31 @@ A. 1 2 -1 3
 
 PROGRAM:
 -----------------------
+class Queue:
+    def __init__(self,size):
+        self.size=size
+        self.data = []
+    def enque(self,element):
+        self.data.append(element)
+    
+    def deque(self):
+        if(len(self.data) > 0):
+            print("deque:{0}".format(self.data.pop(0)))
+        return None
+    def isEmpty(self):
+        if(len(self.data)<1):
+            return "true"
+        else:
+            return "false"
+    def isFull(self):
+        if(len(self.data)<=size):
+            return "false"
+        else:
+            return "true"
+    def peek(self):
+        return(self.data[0])
+
+
 
 2. Reversing the order of a Queue
 Given a queue Q reverse it.
